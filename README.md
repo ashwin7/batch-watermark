@@ -26,14 +26,21 @@ Watermark position can be customized, there are 5 options, initiated with the "-
 ### Supported Flags
 
 -d or --division Sets the divisional ammount to create the new smaller res files. The images will be divided by this number.
+
 -t or --type	Will maintain the file format of the original files -otherwise will default to jpeg.
+
 -w or --web	Sets the target proxy Res so that the larger dimension is 640 - which is an ideal size for email and web work. 
          			If images are smaller than this res they will not be alterred.
+
 -1 or --1k		Sets the target proxy Res so that the lerger dimension is 1024 - for a 1k approximation. 
          			If images are smaller than this res they will not be alterred.
+
 -m or --waterMark	Enable the watermarking. If proxies are being created watermarking will take place second.
+
 -o or --opacity         	Sets the opacity level of the watermark. Default is 70 (percent) if this value isn't specified.
+
 -p or --position		Sets the position of the watermark file from 1-5. These positions are listed numerically from top left heading clockwise. The 5th position is centered. 
+
 -i or --invert		Inverts the watermark image when in screen mode, handy if you havent had time to prep the watermark properly.
 
 ### Usage example:
