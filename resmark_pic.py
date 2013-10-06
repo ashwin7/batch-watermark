@@ -7,7 +7,7 @@
 #
 ####################################################################################################
 
-waterMarkImageFile = "./Sihn.jpg"
+waterMarkImageFile = "./watermark.jpg"
 
 #---------------------------------------------------------------------------------------------------
 
@@ -99,16 +99,16 @@ def main():
 				ofile = abzPath
 				absList.append(ofile)
 		
-		checkedList = fileTypeChecker( absList )
+		checkedList = checkFileType( absList )
 		
 		if oneK == 1:
 			sortedProxyDiv = "1k"
 		elif webSize == 1:
 			sortedProxyDiv = "web"
 		else:
-			sortedProxyDiv = establishProxyDiv( proxyDivision )
+			sortedProxyDiv = establishProxyDivision( proxyDivision )
 			
-		proxyPrep( checkedList, sortedProxyDiv, proxyFolder, maintain, watermark, opacity, position, invert )
+		proxyPreparation( checkedList, sortedProxyDiv, proxyFolder, maintain, watermark, opacity, position, invert )
 			
 	else:
 		print "\n Error: You must put a file or folder as an input argument.\n"	
@@ -116,7 +116,7 @@ def main():
 	#helpSection()
 	#return 2
 
-def fileTypeChecker( fileList ):
+def checkFileType( fileList ):
 	
 	rules = [ "JPEG", "TIFF", "GIF", "PNG", "PDF", "BMP", "PSD", "XBM", "EPS", "IM" ]
 	checkedList = []
@@ -135,7 +135,7 @@ def fileTypeChecker( fileList ):
 	        
 	return checkedList
 
-def establishProxyDiv( proxyDivision ):
+def establishProxyDivision( proxyDivision ):
 	##This function is run when no proxy flags are given
 	if proxyDivision == 0:
 		choiceList = [2,4,8]
@@ -152,7 +152,7 @@ def establishProxyDiv( proxyDivision ):
 	else:
 		return int(round(proxyDivision))
 
-def proxyPrep( fileList, proxyDivision, proxyFolder, maintain, watermark, opacityVal, position, invert ):
+def proxyPreparation( fileList, proxyDivision, proxyFolder, maintain, watermark, opacityVal, position, invert ):
 	##This function does some preliminary checking about what the source arguments are and builds the target output folder.
 	
 	if proxyDivision == "web":
@@ -223,7 +223,7 @@ def makeProxy( fileList, proxyDivision, target, maintain, watermark, opacityVal,
 		else:
 			correctFileExtension = "jpeg"
 		
-		outfile = target + sep + newProxyname + "_proxy." + correctFileExtension.lower()
+		outfile = target + sep + newProxyname + "_copy." + correctFileExtension.lower()
 		if i != outfile: 
 			try: 
 				if 'RGB' not in baseOpenIm.mode:

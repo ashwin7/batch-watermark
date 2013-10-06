@@ -1,18 +1,18 @@
 #!/usr/bin/python
 ####################################################################################################
 #
-# LB_waterMarker.py
+# mark_pic.py
 # To add a watermark to you images, either as screen operation or 'over' composite, with options.
-# by LEO BAKER		leo@turboradness.com
+# by Ashwin		ashwinsaxena7@gmail.com
 #
 ####################################################################################################
 
-waterMarkImageFile = "./Sihn.jpg"
+waterMarkImageFile = "./watermark.jpg"
 
 #---------------------------------------------------------------------------------------------------
 
 ver = 1.0
-print "\n LB_waterMarker_" + str(ver)
+print "\n Watermarking" + str(ver)
 
 import Image, ImageChops, ImageOps, ImageEnhance
 import os, sys, getopt, subprocess
@@ -79,9 +79,9 @@ def main():
 				ofile = abzPath
 				absList.append(ofile)
 		
-		checkedList = fileTypeChecker( absList )
-		targetDest = targetPrep( checkedList, proxyFolder)
-		applyWaterMarks( checkedList, targetDest, maintain, opacity, position, invert )
+		checkedList = checkFileType( absList )
+		targetDest = prepareTarget( checkedList, proxyFolder)
+		addWatermarks( checkedList, targetDest, maintain, opacity, position, invert )
 			
 	else:
 		print "\n Error: You must put a file or folder as an input argument.\n"	
@@ -89,7 +89,7 @@ def main():
 	#helpSection()
 	#return 2
 
-def fileTypeChecker( fileList ):
+def checkFileType( fileList ):
 	
 	rules = [ "JPEG", "TIFF", "GIF", "PNG", "PDF", "BMP", "PSD", "XBM", "EPS", "IM" ]
 	checkedList = []
@@ -108,7 +108,7 @@ def fileTypeChecker( fileList ):
 	        
 	return checkedList
 
-def targetPrep( fileList, proxyFolder ):
+def prepareTarget( fileList, proxyFolder ):
 	##This function does some preliminary checking about what the source arguments are and builds the target output folder.
 		
 	filePath, throwaway = os.path.split( fileList[0] )
@@ -129,7 +129,7 @@ def targetPrep( fileList, proxyFolder ):
 			return targetDest
 	
 	
-def applyWaterMarks( fileList, target, maintain, opacityVal, position, invert ):
+def addWatermarks( fileList, target, maintain, opacityVal, position, invert ):
 	##This function loops through all the files and creates the actual proxies from the pre-established info.
 	
 
@@ -160,7 +160,7 @@ def applyWaterMarks( fileList, target, maintain, opacityVal, position, invert ):
 		else:
 			correctFileExtension = "jpeg"
 		
-		outfile = target + sep + newProxyname + "_wm." + correctFileExtension.lower()
+		outfile = target + sep + newProxyname + "_wmarked." + correctFileExtension.lower()
 		if i != outfile: 
 			try: 
 				if 'RGB' not in baseOpenIm.mode:
